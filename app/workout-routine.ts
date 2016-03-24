@@ -11,18 +11,18 @@ export enum ExerciseCategory {
 export interface WorkoutRoutine {
   id: number;
   name: string;
-  exercises: Set[];
+  exercises: Exercise[];
 }
 
 // Represents one exercise performed over multiple sets.
-export interface Workout {
+export interface Exercise {
   id: number;
-  exerciseId: number;
+  exerciseInfoId: number;
   sets: Set[];  
 }
 
-// Represents a type of exercise.
-export interface Exercise {
+// Represents information about a particular exercise.
+export interface ExerciseInfo {
   id: number;
   name: string;
   category: ExerciseCategory;

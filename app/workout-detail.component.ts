@@ -1,15 +1,10 @@
 import {Component, OnInit} from 'angular2/core';
-import {WorkoutRoutine, Exercise, Set} from './workout-routine';
-//import {Observable} from 'rxjs/Rx';
-//import {groupBy, GroupedObservable} from 'rxjs/operator/groupBy';
+import {WorkoutRoutine, Exercise, ExerciseInfo, Set} from './workout-routine';
 import {WorkoutService} from './workout.service';
-import {GroupByFilter} from "./groupFilter";
-import * as _ from 'lodash';
 
 @Component({
   selector: 'workout-detail',
   inputs: ['workout'],
-  pipes: [GroupByFilter],
   template: `
     <div *ngIf="workout">
         <h2><strong>{{workout.name}}</strong> details!</h2>
@@ -19,14 +14,14 @@ import * as _ from 'lodash';
             <input [(ngModel)]="workout.name" placeholder="Workout Name" />
         </div>
         <div *ngIf="workout.exercises">
-          <h3>Sets</h3>
-          <div *ngFor="#groups of getGroups(workout.exercises) | groupByFilter">
-            <div>{{groups.key}} - {{getExerciseName(groups.key)}}</div>
-            <div *ngFor="#set of groups.value" class='set'>
+          <h3>Exercises</h3>
+          <div *ngFor="#exercise of workout.exercises">
+            <h4>{{exercise.id}}. {{getExerciseName(exercise.exerciseInfoId)}}</h4>
+            <div *ngFor="#set of exercise.sets">
               <div>Set #{{set.id}}</div>
-              <div><label>Reps:</label><input [(ngModel)]="set.reps" placeholder="# reps" /></div>
-              <div><label>Weight:</label><input [(ngModel)]="set.weight" placeholder="weight" /></div>
-              <hr/>
+              <div><label>Reps: </label><input [(ngModel)]="set.reps" placeholder="Reps" /></div>
+              <div><label>Weight: </label><input [(ngModel)]="set.weight" placeholder="Weight" /></div>
+              <div><label>Comment: </label><input [(ngModel)]="set.comment" placeholder="Comments" /></div>
             </div>
           </div>
         </div>
@@ -36,11 +31,10 @@ import * as _ from 'lodash';
 export class WorkoutDetailComponent implements OnInit { 
   constructor(private _workoutService: WorkoutService) { }
 
-  exerciseCatalog: Exercise[];
+  exerciseCatalog: ExerciseInfo[];
   
   workout: WorkoutRoutine;
-  custom: any;
-  groups: any;
+  exercise: Exercise;
   set: Set;
   
   ngOnInit() {
@@ -56,18 +50,5 @@ export class WorkoutDetailComponent implements OnInit {
     if (exercise == null) return "";
     
     return exercise.name;
-  }
-  /*
-  getSetsByGroup(sets: Set[]) : Observable<GroupedObservable<number, Set>> {
-    var g = Observable.fromArray(sets).groupBy(x => x.exerciseId, x => x);
-    
-    return g;
-  }
-  */
-  
-  getGroups(sets: Set[]) {
-    var g = _.groupBy(sets, 'exerciseId');
-    
-    return g
   }
 }

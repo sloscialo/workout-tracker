@@ -1,6 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {WORKOUTS} from './mock-data';
-import {EXERCISES} from './mock-data';
+import {WORKOUTS, EXERCISES} from './mock-data';
 
 @Injectable()
 export class WorkoutService

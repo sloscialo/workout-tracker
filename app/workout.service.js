@@ -10,7 +10,7 @@ System.register(['angular2/core', './mock-data'], function(exports_1, context_1)
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, mock_data_1, mock_data_2;
+    var core_1, mock_data_1;
     var WorkoutService;
     return {
         setters:[
@@ -19,7 +19,6 @@ System.register(['angular2/core', './mock-data'], function(exports_1, context_1)
             },
             function (mock_data_1_1) {
                 mock_data_1 = mock_data_1_1;
-                mock_data_2 = mock_data_1_1;
             }],
         execute: function() {
             WorkoutService = (function () {
@@ -29,7 +28,7 @@ System.register(['angular2/core', './mock-data'], function(exports_1, context_1)
                     return Promise.resolve(mock_data_1.WORKOUTS);
                 };
                 WorkoutService.prototype.getExerciseCatalog = function () {
-                    return Promise.resolve(mock_data_2.EXERCISES);
+                    return Promise.resolve(mock_data_1.EXERCISES);
                 };
                 WorkoutService = __decorate([
                     core_1.Injectable(), 

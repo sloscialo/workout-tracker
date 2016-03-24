@@ -2,7 +2,7 @@ System.register(['./workout-routine'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var workout_routine_1;
-    var upperBody, upperBodyExercises, reps, WORKOUTS, EXERCISES;
+    var upperBody, upperBodyExercises, reps, index, WORKOUTS, EXERCISES;
     return {
         setters:[
             function (workout_routine_1_1) {
@@ -13,13 +13,15 @@ System.register(['./workout-routine'], function(exports_1, context_1) {
             upperBody = [];
             upperBodyExercises = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
             reps = [10, 12, 15];
+            index = 0;
             upperBodyExercises.forEach(function (id) {
-                var index = 0;
+                var exercise = { "id": ++index, "exerciseInfoId": id, "sets": [] };
+                var setCount = 0;
                 reps.forEach(function (rep) {
-                    index++;
-                    var s = { "exerciseId": id, "id": index, "reps": rep, "weight": 0 };
-                    upperBody.push(s);
+                    var set = { "id": ++setCount, "reps": rep, "weight": 0, "comment": "" };
+                    exercise.sets.push(set);
                 });
+                upperBody.push(exercise);
             });
             exports_1("WORKOUTS", WORKOUTS = [
                 { "id": 1, "name": "M&F - Full Body", "exercises": [] },

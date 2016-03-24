@@ -1,20 +1,22 @@
-import {WorkoutRoutine} from './workout-routine';
-import {Exercise} from './workout-routine';
-import {ExerciseCategory} from './workout-routine';
+import {WorkoutRoutine, Exercise, ExerciseInfo, ExerciseCategory} from './workout-routine';
 import {Set} from './workout-routine';
 
 // Build UpperBody Workout Routine
-var upperBody: Array<Set> = [];
+var upperBody: Array<Exercise> = [];
 var upperBodyExercises: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 var reps: number[] = [10, 12, 15];
 
+var index = 0;
 upperBodyExercises.forEach(id => {
-  var index = 0;
-  reps.forEach(rep => { 
-    index++;
-    var s: Set = { "exerciseId": id, "id": index, "reps": rep, "weight": 0 };
-    upperBody.push(s);
+  var exercise: Exercise = { "id": ++index, "exerciseInfoId": id, "sets": [] };
+  
+  var setCount = 0;
+  reps.forEach(rep => {       
+    var set: Set = { "id": ++setCount, "reps": rep, "weight": 0, "comment": ""};
+    exercise.sets.push(set);
   });
+  
+  upperBody.push(exercise);
 });
 
 export var WORKOUTS: WorkoutRoutine[] = [
@@ -30,7 +32,7 @@ export var WORKOUTS: WorkoutRoutine[] = [
   { "id": 10, "name": "M&F - Back, Biceps & Abs", "exercises" : [] },
 ];
 
-export var EXERCISES: Exercise[] = [
+export var EXERCISES: ExerciseInfo[] = [
   { "id": 1, "name": "Barbell Bench Press", "category": ExerciseCategory.Chest, "isPerSide": false },
   { "id": 2, "name": "Flat Dumbbell Fly", "category": ExerciseCategory.Chest, "isPerSide": false },
   { "id": 3, "name": "Barbell Bent-Over Row", "category": ExerciseCategory.Back, "isPerSide": false },
