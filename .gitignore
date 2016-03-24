@@ -1,3 +1,7 @@
+# Project Ignores
+node_modules/
+typings/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
