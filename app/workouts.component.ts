@@ -37,7 +37,8 @@ export class WorkoutsComponent implements OnInit {
   }
   
   getWorkouts() {
-    this._workoutService.getWorkouts().then(workouts => this.workouts = workouts);
+    this._workoutService.getWorkouts()
+        .then(workouts => this.workouts = workouts);
   }
 }
 

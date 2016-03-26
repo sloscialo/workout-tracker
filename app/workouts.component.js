@@ -37,7 +37,8 @@ System.register(['angular2/core', './workout-detail.component', './workout.servi
                 };
                 WorkoutsComponent.prototype.getWorkouts = function () {
                     var _this = this;
-                    this._workoutService.getWorkouts().then(function (workouts) { return _this.workouts = workouts; });
+                    this._workoutService.getWorkouts()
+                        .then(function (workouts) { return _this.workouts = workouts; });
                 };
                 WorkoutsComponent = __decorate([
                     core_1.Component({

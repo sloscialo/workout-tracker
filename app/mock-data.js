@@ -15,10 +15,15 @@ System.register(['./workout-routine'], function(exports_1, context_1) {
             reps = [10, 12, 15];
             index = 0;
             upperBodyExercises.forEach(function (id) {
-                var exercise = { "id": ++index, "exerciseInfoId": id, "sets": [] };
+                var exercise = new workout_routine_1.Exercise();
+                exercise.id = ++index;
+                exercise.exerciseInfoId = id;
+                exercise.sets = [];
+                //var exercise: Exercise = { "id": ++index, "exerciseInfoId": id, "sets": [] };
                 var setCount = 0;
                 reps.forEach(function (rep) {
-                    var set = { "id": ++setCount, "reps": rep, "weight": 0, "comment": "" };
+                    var weight = Math.floor((Math.random() * 100) + 10);
+                    var set = { "id": ++setCount, "reps": rep, "weight": weight, "comment": "" };
                     exercise.sets.push(set);
                 });
                 upperBody.push(exercise);

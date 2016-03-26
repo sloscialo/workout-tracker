@@ -1,7 +1,7 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var ExerciseCategory;
+    var ExerciseCategory, Exercise;
     return {
         setters:[],
         execute: function() {
@@ -14,6 +14,18 @@ System.register([], function(exports_1, context_1) {
                 ExerciseCategory[ExerciseCategory["Shoulders"] = 6] = "Shoulders";
             })(ExerciseCategory || (ExerciseCategory = {}));
             exports_1("ExerciseCategory", ExerciseCategory);
+            Exercise = (function () {
+                function Exercise() {
+                }
+                Exercise.prototype.getTotalWeight = function () {
+                    var sum = this.sets
+                        .map(function (s) { return s.weight; })
+                        .reduce(function (p, c) { return p + c; });
+                    return sum;
+                };
+                return Exercise;
+            }());
+            exports_1("Exercise", Exercise);
         }
     }
 });

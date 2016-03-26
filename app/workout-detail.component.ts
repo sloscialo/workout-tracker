@@ -1,6 +1,7 @@
-import {Component, OnInit} from 'angular2/core';
-import {WorkoutRoutine, Exercise, ExerciseInfo, Set} from './workout-routine';
-import {WorkoutService} from './workout.service';
+import { Component, OnInit } from 'angular2/core';
+import { WorkoutRoutine, Exercise, ExerciseInfo, Set } from './workout-routine';
+import { WorkoutService } from './workout.service';
+import { ExerciseCatalog } from './exercise-catalog';
 
 @Component({
   selector: 'workout-detail',
@@ -28,27 +29,14 @@ import {WorkoutService} from './workout.service';
     </div>
   `
 })
-export class WorkoutDetailComponent implements OnInit { 
-  constructor(private _workoutService: WorkoutService) { }
+export class WorkoutDetailComponent  { 
+  constructor(private _workoutService: WorkoutService, private _exerciseCatalog: ExerciseCatalog) { }
 
-  exerciseCatalog: ExerciseInfo[];
-  
   workout: WorkoutRoutine;
   exercise: Exercise;
   set: Set;
   
-  ngOnInit() {
-    this.getExerciseCatalog();
-  }
-  
-  getExerciseCatalog()  {
-    this._workoutService.getExerciseCatalog().then(exercises => this.exerciseCatalog = exercises);
-  }
-  
   getExerciseName(id: number) {
-    var exercise = this.exerciseCatalog.find(o => o.id == id);
-    if (exercise == null) return "";
-    
-    return exercise.name;
+    return this._exerciseCatalog.getExerciseName(id);
   }
 }

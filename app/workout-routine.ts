@@ -11,14 +11,29 @@ export enum ExerciseCategory {
 export interface WorkoutRoutine {
   id: number;
   name: string;
-  exercises: Exercise[];
+  exercises: IExercise[];
 }
 
 // Represents one exercise performed over multiple sets.
-export interface Exercise {
+export interface IExercise {
   id: number;
   exerciseInfoId: number;
-  sets: Set[];  
+  sets: Set[];
+  
+  getTotalWeight(): number;  
+}
+
+export class Exercise implements IExercise{
+  id: number;
+  exerciseInfoId: number;
+  sets: Set[];
+  
+  getTotalWeight() : number {
+    var sum = this.sets
+                  .map(s => s.weight)
+                  .reduce((p,c) => { return p + c;});
+    return sum;
+  }
 }
 
 // Represents information about a particular exercise.

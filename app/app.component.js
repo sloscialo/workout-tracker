@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './workout.service', './workouts.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './workout.service', './workouts.component', './dashboard.component', './exercise-catalog'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './wor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, workout_service_1, workouts_component_1;
+    var core_1, router_1, workout_service_1, workouts_component_1, dashboard_component_1, exercise_catalog_1;
     var AppComponent;
     return {
         setters:[
@@ -25,6 +25,12 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './wor
             },
             function (workouts_component_1_1) {
                 workouts_component_1 = workouts_component_1_1;
+            },
+            function (dashboard_component_1_1) {
+                dashboard_component_1 = dashboard_component_1_1;
+            },
+            function (exercise_catalog_1_1) {
+                exercise_catalog_1 = exercise_catalog_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -34,11 +40,12 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './wor
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'workout-tracker',
-                        template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Workouts']\">Workouts</a>\n    \n    <router-outlet></router-outlet>\n  ",
+                        templateUrl: 'views/main.html',
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
-                            workout_service_1.WorkoutService
+                            workout_service_1.WorkoutService,
+                            exercise_catalog_1.ExerciseCatalog
                         ]
                     }),
                     router_1.RouteConfig([
@@ -46,6 +53,12 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './wor
                             path: '/workouts',
                             name: 'Workouts',
                             component: workouts_component_1.WorkoutsComponent
+                        },
+                        {
+                            path: '/dashboard',
+                            name: 'Dashboard',
+                            component: dashboard_component_1.DashboardComponent,
+                            useAsDefault: true
                         }
                     ]), 
                     __metadata('design:paramtypes', [])
