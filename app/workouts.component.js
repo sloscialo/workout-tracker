@@ -27,7 +27,7 @@ System.register(['angular2/core', './workout-detail.component', './workout.servi
             WorkoutsComponent = (function () {
                 function WorkoutsComponent(_workoutService) {
                     this._workoutService = _workoutService;
-                    this.title = 'Workouts';
+                    this.title = 'Workout Routines';
                 }
                 WorkoutsComponent.prototype.ngOnInit = function () {
                     this.getWorkouts();
@@ -43,7 +43,7 @@ System.register(['angular2/core', './workout-detail.component', './workout.servi
                 WorkoutsComponent = __decorate([
                     core_1.Component({
                         selector: 'workouts',
-                        template: "\n        <h2>{{title}}</h2>\n        \n        <ul class=\"workouts\">\n            <li *ngFor=\"#routine of workouts\" (click)=\"onSelect(routine)\" [class.selected]=\"routine === selectedWorkout\">        \n                <span class=\"badge\">{{routine.id}}</span> <span class=\"text\">{{routine.name}}</span>\n            </li>\n        </ul>      \n        \n        <workout-detail [workout]='selectedWorkout'></workout-detail> \n        ",
+                        templateUrl: 'views/workouts.html',
                         directives: [workout_detail_component_1.WorkoutDetailComponent]
                     }), 
                     __metadata('design:paramtypes', [workout_service_1.WorkoutService])

@@ -1,11 +1,12 @@
 <div>Total Weight Lifted: {{totalWeight | number}}</div>
+<br/>
 <h3>Top 5 Exercises</h3>
 
-<div class="grid grid-pad">
-  <div *ngFor="#topExercise of topExercises" (click)="gotoDetail(exercise)" class="col-1-4">
-    <div class="module exercise">
-      <h4>{{getExerciseName(topExercise.id)}}</h4>
-      <div>Total Lifted: {{topExercise.totalWeight}}</div>
+<div class="card-deck-wrapper">
+  <div class="card-deck">
+    <div *ngFor="#topExercise of topExercises" (click)="gotoDetail(exercise)" class="card card-block">
+        <h5 class="card-title">{{getExerciseName(topExercise.id)}}</h5>
+        <p class="card-text">Total Lifted: {{topExercise.totalWeight}}</p>
     </div>
   </div>
 </div>

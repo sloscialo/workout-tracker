@@ -5,24 +5,14 @@ import {WorkoutDetailComponent} from './workout-detail.component';
 import {WorkoutService} from './workout.service';
 
 @Component({
-    selector: 'workouts',
-    template: `
-        <h2>{{title}}</h2>
-        
-        <ul class="workouts">
-            <li *ngFor="#routine of workouts" (click)="onSelect(routine)" [class.selected]="routine === selectedWorkout">        
-                <span class="badge">{{routine.id}}</span> <span class="text">{{routine.name}}</span>
-            </li>
-        </ul>      
-        
-        <workout-detail [workout]='selectedWorkout'></workout-detail> 
-        `,
-     directives: [WorkoutDetailComponent]
+  selector: 'workouts',
+  templateUrl: 'views/workouts.html',
+  directives: [WorkoutDetailComponent]
 })
 export class WorkoutsComponent implements OnInit { 
   constructor(private _workoutService: WorkoutService) { }
   
-  public title = 'Workouts';
+  public title = 'Workout Routines';
   
   workouts: WorkoutRoutine[];
   routine: WorkoutRoutine;

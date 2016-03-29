@@ -7,6 +7,19 @@ export enum ExerciseCategory {
     Shoulders
 }
 
+export interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  userId: string;  
+}
+
+export interface Workout {
+  userId: number;
+  workoutDate: Date;
+  workoutId: number;
+}
+
 // Represents a workout routine made up of different exercises.
 export interface WorkoutRoutine {
   id: number;
