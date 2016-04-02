@@ -1,4 +1,4 @@
-import {WorkoutRoutine, Exercise, ExerciseInfo, ExerciseCategory} from './workout-routine';
+import {Difficulty, WorkoutRoutine, Exercise, ExerciseInfo, ExerciseCategory} from './workout-routine';
 import {Set} from './workout-routine';
 
 var empty: Array<Exercise> = [];
@@ -56,7 +56,7 @@ function CreateWorkout(routineId: number, exercises: number[], reps: number[])
     var setCount = 0;
     reps.forEach(rep => {   
       var weight = Math.floor((Math.random() * 100) + 10);    
-      var set: Set = { "id": ++setCount, "reps": rep, "weight": weight, "comment": ""};
+      var set: Set = { "id": ++setCount, "reps": rep, "weight": weight, "difficulty": Difficulty.Perfect, "comment": ""};
       exercise.sets.push(set);
     });
     

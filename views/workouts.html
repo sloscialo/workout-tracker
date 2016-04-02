@@ -2,13 +2,17 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4">
-      <div *ngFor="#routine of workouts" style="margin-bottom: 2pt;">
-        <button type="button" class="btn btn-labeled btn-primary-outline" (click)="onSelect(routine)" style="width: 25em">
+      <div *ngFor="#routine of workouts" class="badgeItem" (click)="onSelect(routine)" [class.selected]="routine === selectedRoutine">
+        <!--
+            <button type="button" class="btn btn-labeled btn-primary-outline" (click)="onSelect(routine)" style="width: 25em">
           <span class="btn-label text-sm-right" style="right:0px; width: 2.5em; margin-left: -4px;">{{routine.id}}</span>
           {{routine.name}}
         </button>
+        -->
+        <span class="badge">{{routine.id}}</span><span class="text">{{routine.name}}</span>
       </div>
     </div>
+    <div class="col-sm-8">Placeholder</div>
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var ExerciseCategory, Exercise;
+    var ExerciseCategory, Difficulty, Exercise;
     return {
         setters:[],
         execute: function() {
@@ -14,6 +14,15 @@ System.register([], function(exports_1, context_1) {
                 ExerciseCategory[ExerciseCategory["Shoulders"] = 6] = "Shoulders";
             })(ExerciseCategory || (ExerciseCategory = {}));
             exports_1("ExerciseCategory", ExerciseCategory);
+            (function (Difficulty) {
+                Difficulty[Difficulty["TooHeavy"] = 1] = "TooHeavy";
+                Difficulty[Difficulty["Heavy"] = 2] = "Heavy";
+                Difficulty[Difficulty["Good"] = 3] = "Good";
+                Difficulty[Difficulty["Perfect"] = 4] = "Perfect";
+                Difficulty[Difficulty["Light"] = 5] = "Light";
+                Difficulty[Difficulty["TooLight"] = 6] = "TooLight";
+            })(Difficulty || (Difficulty = {}));
+            exports_1("Difficulty", Difficulty);
             Exercise = (function () {
                 function Exercise() {
                 }

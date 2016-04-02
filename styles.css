@@ -12,3 +12,53 @@ body {
     margin: 2em; 
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;   
 }
+
+.selected
+{
+    border-color: #622 !important;
+    background-color: #C99 !important;
+}
+
+.selected span.badge {
+    background-color: #622 !important;
+}
+
+.badgeItem
+{
+    border-radius: 5px;
+    border: #369 0.1em solid;
+    margin-bottom: 2pt;
+    height: 2.5em;
+    line-height: 2.0em;
+    cursor: pointer;
+}
+
+.badgeItem:hover {
+    border: blue 0.1em solid;
+    background-color: lightskyblue;
+}
+
+.badgeItem:hover :first-child {
+    background-color: #444;
+    border-color: #444;
+}
+
+.badgeItem span.badge
+{
+    position: relative;
+    right: 0px;
+    border-radius: 3px 0 0 3px;
+    background-color: #369;
+    color: white;
+    width: 2em;
+    display: inline-block;
+    text-align: right;
+    padding: 0.1em 0.3em 0.1em 0.1em;
+    height: 100%;
+    border:#369 0.1em solid;;
+}
+
+.badgeItem span.text
+{
+    margin-left: 1em;
+}

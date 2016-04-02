@@ -14,7 +14,7 @@ System.register(['./workout-routine'], function(exports_1, context_1) {
             var setCount = 0;
             reps.forEach(function (rep) {
                 var weight = Math.floor((Math.random() * 100) + 10);
-                var set = { "id": ++setCount, "reps": rep, "weight": weight, "comment": "" };
+                var set = { "id": ++setCount, "reps": rep, "weight": weight, "difficulty": workout_routine_1.Difficulty.Perfect, "comment": "" };
                 exercise.sets.push(set);
             });
             routine.push(exercise);

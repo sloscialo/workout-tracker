@@ -7,6 +7,15 @@ export enum ExerciseCategory {
     Shoulders
 }
 
+export enum Difficulty {
+    TooHeavy = 1,
+    Heavy,
+    Good,
+    Perfect,
+    Light,
+    TooLight
+}
+
 export interface User {
   id: number;
   firstName: string;
@@ -63,5 +72,6 @@ export interface Set
   id: number;
   reps: number;
   weight: number;
+  difficulty: Difficulty;
   comment: string;
 }
