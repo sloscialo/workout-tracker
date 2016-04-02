@@ -5,9 +5,9 @@ System.register(['./workout-routine'], function(exports_1, context_1) {
     var empty, WORKOUTS, EXERCISES, fullBodyExercises, upperBodyExercises;
     function CreateWorkout(routineId, exercises, reps) {
         var routine = [];
+        var index = 0;
         exercises.forEach(function (id) {
             var exercise = new workout_routine_1.Exercise();
-            var index = 0;
             exercise.id = ++index;
             exercise.exerciseInfoId = id;
             exercise.sets = [];

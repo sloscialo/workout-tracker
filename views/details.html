@@ -1,0 +1,33 @@
+<div *ngIf="workout" class="container-fluid">
+    <h4>Update Workout</h4>
+    <hr/>
+    <div class="col-sm-9">
+      <form>
+        <fieldset class="form-group">
+          <label for="workoutRoutineName">Workout Routine name: </label>
+          <input id="workoutRoutineName" class="form-control" [(ngModel)]="workout.name" placeholder="Workout Routine Name" />
+        </fieldset>
+        
+        <br/>
+        
+        <div *ngIf="workout.exercises">
+          <h3>Exercises ({{workout.exercises.length}})</h3>
+          <br/>
+          
+          <div *ngFor="#exercise of workout.exercises">
+            <h4 class="card-title">{{exercise.id}}. {{getExerciseName(exercise.exerciseInfoId)}}</h4>
+            <div class="card-group">
+              <div class="card card-block" *ngFor="#set of exercise.sets">           
+                <div class="card-title"><small>Set</small><h2>{{set.id}}</h2></div>
+                  <div><label for="reps">Reps: </label><input id="reps" class="form-control" [(ngModel)]="set.reps" placeholder="Reps" /></div>
+                  <div><label for="weight">Weight: </label><input id="weight" class="form-control" [(ngModel)]="set.weight" placeholder="Weight" /></div>
+                  <div><label for="comments">Comment: </label><input id="comment" class="form-control" [(ngModel)]="set.comment" placeholder="Comments" /></div>
+              </div>
+            </div>
+            <br/>
+          </div>
+        </div>
+      
+      </form>
+    </div>
+</div>

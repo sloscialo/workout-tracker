@@ -21,6 +21,7 @@ body {
 
 .selected span.badge {
     background-color: #622 !important;
+    border-color: #622 !important;
 }
 
 .badgeItem

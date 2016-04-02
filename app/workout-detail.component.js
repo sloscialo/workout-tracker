@@ -36,7 +36,7 @@ System.register(['angular2/core', './workout.service', './exercise-catalog'], fu
                     core_1.Component({
                         selector: 'workout-detail',
                         inputs: ['workout'],
-                        template: "\n    <div *ngIf=\"workout\">\n        <h2><strong>{{workout.name}}</strong> details!</h2>\n        <div><label>id: </label>{{workout.id}}</div>\n        <div>\n            <label>name: </label>\n            <input [(ngModel)]=\"workout.name\" placeholder=\"Workout Name\" />\n        </div>\n        <div *ngIf=\"workout.exercises\">\n          <h3>Exercises</h3>\n          <div *ngFor=\"#exercise of workout.exercises\">\n            <h4>{{exercise.id}}. {{getExerciseName(exercise.exerciseInfoId)}}</h4>\n            <div *ngFor=\"#set of exercise.sets\">\n              <div>Set #{{set.id}}</div>\n              <div><label>Reps: </label><input [(ngModel)]=\"set.reps\" placeholder=\"Reps\" /></div>\n              <div><label>Weight: </label><input [(ngModel)]=\"set.weight\" placeholder=\"Weight\" /></div>\n              <div><label>Comment: </label><input [(ngModel)]=\"set.comment\" placeholder=\"Comments\" /></div>\n            </div>\n          </div>\n        </div>\n    </div>\n  "
+                        templateUrl: 'views/details.html'
                     }), 
                     __metadata('design:paramtypes', [workout_service_1.WorkoutService, exercise_catalog_1.ExerciseCatalog])
                 ], WorkoutDetailComponent);

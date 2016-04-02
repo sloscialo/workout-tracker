@@ -44,10 +44,10 @@ CreateWorkout(2, upperBodyExercises, [10, 12, 15]);
 function CreateWorkout(routineId: number, exercises: number[], reps: number[])
 {
   var routine: Array<Exercise> = [];
+  var index = 0;
   
   exercises.forEach(id => {
     var exercise: Exercise = new Exercise();
-    var index = 0;
     
     exercise.id = ++index;
     exercise.exerciseInfoId = id;
