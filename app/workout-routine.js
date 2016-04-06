@@ -25,6 +25,7 @@ System.register([], function(exports_1, context_1) {
             exports_1("Difficulty", Difficulty);
             Exercise = (function () {
                 function Exercise() {
+                    this.sets = new Array();
                 }
                 Exercise.prototype.getTotalWeight = function () {
                     var sum = this.sets

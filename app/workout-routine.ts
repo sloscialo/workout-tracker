@@ -21,6 +21,7 @@ export interface User {
   firstName: string;
   lastName: string;
   userId: string;  
+  passwordHash: string;
 }
 
 export interface Workout {
@@ -49,6 +50,10 @@ export class Exercise implements IExercise{
   id: number;
   exerciseInfoId: number;
   sets: Set[];
+  
+  constructor() {
+    this.sets = new Array<Set>();
+  }
   
   getTotalWeight() : number {
     var sum = this.sets

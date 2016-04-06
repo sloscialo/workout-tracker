@@ -1,7 +1,9 @@
 import { Component, OnInit } from 'angular2/core';
+import { } from 'angular2/router';
 import { WorkoutRoutine } from './workout-routine';
 import { WorkoutService } from './workout.service';
 import { ExerciseCatalog } from './exercise-catalog';
+import * as utils from './utilities';
 import * as _ from 'lodash';
 
 @Component({
@@ -18,7 +20,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this._workoutService.getWorkouts()
         .then(o => {
-          this._computeTopExercises(o);
+          this.computeTopExercises(o);
         })
   }
   
@@ -30,7 +32,7 @@ export class DashboardComponent implements OnInit {
     return this._exerciseCatalog.getExerciseName(id);  
   }
   
-  _computeTopExercises(workouts: WorkoutRoutine[]) {
+  private computeTopExercises(workouts: WorkoutRoutine[]) {
     var tops: TopExercise[] = [];
     
     workouts.forEach(w => {

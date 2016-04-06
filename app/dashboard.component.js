@@ -36,7 +36,7 @@ System.register(['angular2/core', './workout.service', './exercise-catalog', 'lo
                     var _this = this;
                     this._workoutService.getWorkouts()
                         .then(function (o) {
-                        _this._computeTopExercises(o);
+                        _this.computeTopExercises(o);
                     });
                 };
                 DashboardComponent.prototype.gotoDetail = function () {
@@ -44,7 +44,7 @@ System.register(['angular2/core', './workout.service', './exercise-catalog', 'lo
                 DashboardComponent.prototype.getExerciseName = function (id) {
                     return this._exerciseCatalog.getExerciseName(id);
                 };
-                DashboardComponent.prototype._computeTopExercises = function (workouts) {
+                DashboardComponent.prototype.computeTopExercises = function (workouts) {
                     var tops = [];
                     workouts.forEach(function (w) {
                         w.exercises.forEach(function (e) {
