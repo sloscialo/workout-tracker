@@ -1,4 +1,4 @@
-System.register(['angular2/core', './workout.service', './exercise-catalog', 'lodash'], function(exports_1, context_1) {
+System.register(['angular2/core', './workout.service', './exercise-catalog'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './workout.service', './exercise-catalog', 'lo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, workout_service_1, exercise_catalog_1, _;
+    var core_1, workout_service_1, exercise_catalog_1;
     var DashboardComponent, TopExercise;
     return {
         setters:[
@@ -22,9 +22,6 @@ System.register(['angular2/core', './workout.service', './exercise-catalog', 'lo
             },
             function (exercise_catalog_1_1) {
                 exercise_catalog_1 = exercise_catalog_1_1;
-            },
-            function (_1) {
-                _ = _1;
             }],
         execute: function() {
             DashboardComponent = (function () {
@@ -50,7 +47,7 @@ System.register(['angular2/core', './workout.service', './exercise-catalog', 'lo
                         w.exercises.forEach(function (e) {
                             // calculate total weight lifted.
                             var total = e.getTotalWeight();
-                            var x = _.find(tops, function (o) { o.id === e.exerciseInfoId; });
+                            var x = tops.find(function (o) { return o.id === e.exerciseInfoId; });
                             if (x === undefined || x === null) {
                                 var exercise = { id: e.exerciseInfoId, totalWeight: e.getTotalWeight() };
                                 tops.push(exercise);

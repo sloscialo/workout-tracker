@@ -6,7 +6,8 @@
     <a class="btn btn-primary-outline" [routerLink]="['Workouts']">Workouts</a>
   </div>
   <div class="col-sm-3">
-    <button class="btn btn-danger-outline pull-sm-right" (click)="onLogout()" [disabled]="true">Logout</button>
+    <span class="pull-sm-right">{{userName}}</span>
+    <button class="btn btn-danger-outline pull-sm-right" (click)="onLogout()" [disabled]="disableLogout()">Logout</button>
   </div>
 </nav>
 <hr/>

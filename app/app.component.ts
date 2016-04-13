@@ -1,17 +1,18 @@
 import { Component } from 'angular2/core';
-import { RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { RouteConfig, Router, RouterLink, ROUTER_PROVIDERS } from 'angular2/router';
 import { WorkoutService } from './workout.service';
 import { AuthenticationService } from './authentication.service';
 import { WorkoutsComponent } from './workouts.component';
 import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
 import { ExerciseCatalog } from './exercise-catalog';
-import { isLoggedIn } from './utilities';
+import { AuthenticatedRouterOutlet } from './authenticated-router-outlet';
+import * as Utils from './utilities';
 
 @Component({
   selector: 'workout-tracker',
   templateUrl: 'views/main.html',
-  directives: [ROUTER_DIRECTIVES],
+  directives:[AuthenticatedRouterOutlet, RouterLink], // ROUTER_DIRECTIVES],
   providers: [
     ROUTER_PROVIDERS,
     WorkoutService,
@@ -41,14 +42,15 @@ import { isLoggedIn } from './utilities';
     component: DashboardComponent
   }
 ])
-export class AppComponent {
+export class AppComponent
+{
   title = 'Workout Tracker';
   
   constructor(private _authService: AuthenticationService, private _router: Router)
   {
     
-  }
-  
+  }  
+      
   onLogout() 
   {
     this._authService.logout()
@@ -57,6 +59,8 @@ export class AppComponent {
   
   disableLogout(): boolean
   {
-    return isLoggedIn();
+    return Utils.isLoggedIn();
   }
+  
+  
 }

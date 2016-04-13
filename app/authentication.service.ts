@@ -2,11 +2,13 @@ import { Injectable } from 'angular2/core';
 import { USERS } from './mock-users';
 import { User } from './workout-routine';
 import { Constants, createHashCode } from './utilities';
-import * as _ from 'lodash';
+import { Observable } from 'rxjs/rx';
 
 @Injectable()
 export class AuthenticationService
 {
+  user: Observable<User>;
+  
   login(userName: string, password: string): Promise<User>
   {
     // TODO: Replace with call to service.
@@ -18,6 +20,7 @@ export class AuthenticationService
     }
     
     var token = this.createToken(user);
+    this.user.se
     this.setToken(token);
     
     return Promise.resolve(user);

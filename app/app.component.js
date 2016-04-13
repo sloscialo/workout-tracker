@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './workout.service', './authentication.service', './workouts.component', './dashboard.component', './login.component', './exercise-catalog', './utilities'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './workout.service', './authentication.service', './workouts.component', './dashboard.component', './login.component', './exercise-catalog', './authenticated-router-outlet', './utilities'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './aut
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, workout_service_1, authentication_service_1, workouts_component_1, dashboard_component_1, login_component_1, exercise_catalog_1, utilities_1;
+    var core_1, router_1, workout_service_1, authentication_service_1, workouts_component_1, dashboard_component_1, login_component_1, exercise_catalog_1, authenticated_router_outlet_1, Utils;
     var AppComponent;
     return {
         setters:[
@@ -38,8 +38,11 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './aut
             function (exercise_catalog_1_1) {
                 exercise_catalog_1 = exercise_catalog_1_1;
             },
-            function (utilities_1_1) {
-                utilities_1 = utilities_1_1;
+            function (authenticated_router_outlet_1_1) {
+                authenticated_router_outlet_1 = authenticated_router_outlet_1_1;
+            },
+            function (Utils_1) {
+                Utils = Utils_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -54,13 +57,13 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './aut
                         .then(function () { return _this._router.navigate(['Login']); });
                 };
                 AppComponent.prototype.disableLogout = function () {
-                    return utilities_1.isLoggedIn();
+                    return Utils.isLoggedIn();
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'workout-tracker',
                         templateUrl: 'views/main.html',
-                        directives: [router_1.ROUTER_DIRECTIVES],
+                        directives: [authenticated_router_outlet_1.AuthenticatedRouterOutlet, router_1.RouterLink],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
                             workout_service_1.WorkoutService,

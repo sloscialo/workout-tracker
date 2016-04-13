@@ -1,10 +1,9 @@
 import { Component, OnInit } from 'angular2/core';
-import { } from 'angular2/router';
+import { Router, CanActivate } from 'angular2/router';
 import { WorkoutRoutine } from './workout-routine';
 import { WorkoutService } from './workout.service';
 import { ExerciseCatalog } from './exercise-catalog';
-import * as utils from './utilities';
-import * as _ from 'lodash';
+import * as Utils from './utilities';
 
 @Component({
   selector: 'dashboard',
@@ -15,7 +14,10 @@ export class DashboardComponent implements OnInit {
   topExercise: TopExercise;
   totalWeight: number;
   
-  constructor(private _workoutService: WorkoutService, private _exerciseCatalog: ExerciseCatalog) { }
+  constructor(private _workoutService: WorkoutService, private _exerciseCatalog: ExerciseCatalog) 
+  {
+    
+  }
   
   ngOnInit() {
     this._workoutService.getWorkouts()
@@ -39,7 +41,8 @@ export class DashboardComponent implements OnInit {
       w.exercises.forEach(e => {
         // calculate total weight lifted.
         var total = e.getTotalWeight();
-        var x =_.find(tops, o => { o.id === e.exerciseInfoId })
+        var x = tops.find(o => o.id === e.exerciseInfoId );
+        
         if (x === undefined || x === null)
         {
           var exercise: TopExercise = { id: e.exerciseInfoId, totalWeight: e.getTotalWeight() }

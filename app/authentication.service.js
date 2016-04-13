@@ -34,6 +34,7 @@ System.register(['angular2/core', './mock-users', './utilities'], function(expor
                         return Promise.reject("User not found, or password incorrect.");
                     }
                     var token = this.createToken(user);
+                    this.user = user;
                     this.setToken(token);
                     return Promise.resolve(user);
                 };
