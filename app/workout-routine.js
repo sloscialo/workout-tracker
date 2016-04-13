@@ -1,7 +1,7 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var ExerciseCategory, Difficulty, Exercise;
+    var ExerciseCategory, Difficulty, User, Exercise;
     return {
         setters:[],
         execute: function() {
@@ -23,6 +23,25 @@ System.register([], function(exports_1, context_1) {
                 Difficulty[Difficulty["TooLight"] = 6] = "TooLight";
             })(Difficulty || (Difficulty = {}));
             exports_1("Difficulty", Difficulty);
+            User = (function () {
+                function User() {
+                }
+                User.prototype.toFullName = function () {
+                    return this.firstName + " " + this.lastName;
+                };
+                User.deserialize = function (value) {
+                    var o = JSON.parse(value);
+                    var u = new User();
+                    u.firstName = o.firstName;
+                    u.id = o.id;
+                    u.lastName = o.lastName;
+                    u.passwordHash = o.passwordHash;
+                    u.userId = o.userId;
+                    return u;
+                };
+                return User;
+            }());
+            exports_1("User", User);
             Exercise = (function () {
                 function Exercise() {
                     this.sets = new Array();

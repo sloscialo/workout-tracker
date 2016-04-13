@@ -33,19 +33,25 @@ System.register(['angular2/core', './mock-users', './utilities'], function(expor
                     if (user === null || user === undefined) {
                         return Promise.reject("User not found, or password incorrect.");
                     }
-                    var token = this.createToken(user);
-                    this.user = user;
-                    this.setToken(token);
                     return Promise.resolve(user);
                 };
                 AuthenticationService.prototype.logout = function () {
                     try {
-                        localStorage.removeItem(utilities_1.Constants.TOKEN);
+                        this.removeToken();
                         return Promise.resolve(true);
                     }
                     catch (error) {
                         return Promise.reject("Could not log out: " + error.message);
                     }
+                };
+                AuthenticationService.prototype.getToken = function () {
+                    return localStorage.getItem(utilities_1.Constants.TOKEN);
+                };
+                AuthenticationService.prototype.setToken = function (value) {
+                    localStorage.setItem(utilities_1.Constants.TOKEN, value);
+                };
+                AuthenticationService.prototype.removeToken = function () {
+                    localStorage.removeItem(utilities_1.Constants.TOKEN);
                 };
                 AuthenticationService.prototype.createToken = function (user) {
                     var hash = Date.now();
@@ -54,12 +60,6 @@ System.register(['angular2/core', './mock-users', './utilities'], function(expor
                     hash = (hash * 23) ^ utilities_1.createHashCode(user.lastName);
                     hash = (hash * 23) ^ utilities_1.createHashCode(user.passwordHash);
                     return hash.toString(16);
-                };
-                AuthenticationService.prototype.getToken = function () {
-                    return localStorage.getItem(utilities_1.Constants.TOKEN);
-                };
-                AuthenticationService.prototype.setToken = function (value) {
-                    localStorage.setItem(utilities_1.Constants.TOKEN, value);
                 };
                 AuthenticationService = __decorate([
                     core_1.Injectable(), 

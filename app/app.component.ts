@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
 import { ExerciseCatalog } from './exercise-catalog';
 import { AuthenticatedRouterOutlet } from './authenticated-router-outlet';
+import { User } from './workout-routine';
 import * as Utils from './utilities';
 
 @Component({
@@ -45,6 +46,7 @@ import * as Utils from './utilities';
 export class AppComponent
 {
   title = 'Workout Tracker';
+  userName: string;
   
   constructor(private _authService: AuthenticationService, private _router: Router)
   {
@@ -57,10 +59,20 @@ export class AppComponent
         .then(() => this._router.navigate(['Login']));
   }
   
-  disableLogout(): boolean
+  isLogoutDisabled(): boolean
   {
-    return Utils.isLoggedIn();
+    return !Utils.isLoggedIn();
+  }  
+  
+  getCurrentUser(): string
+  {
+    if (!Utils.isLoggedIn) { return "" }
+    
+    var u = sessionStorage.getItem(Utils.Constants.USER)
+    if (u === null || u === undefined) { return "" }
+     
+    var user: User = User.deserialize(u);
+    
+    return user.toFullName();
   }
-  
-  
 }

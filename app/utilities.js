@@ -21,6 +21,7 @@ System.register([], function(exports_1, context_1) {
                 function Constants() {
                 }
                 Constants.TOKEN = "authToken";
+                Constants.USER = "user";
                 return Constants;
             }());
             exports_1("Constants", Constants);

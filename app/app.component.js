@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './workout.service', './authentication.service', './workouts.component', './dashboard.component', './login.component', './exercise-catalog', './authenticated-router-outlet', './utilities'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './workout.service', './authentication.service', './workouts.component', './dashboard.component', './login.component', './exercise-catalog', './authenticated-router-outlet', './workout-routine', './utilities'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './aut
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, workout_service_1, authentication_service_1, workouts_component_1, dashboard_component_1, login_component_1, exercise_catalog_1, authenticated_router_outlet_1, Utils;
+    var core_1, router_1, workout_service_1, authentication_service_1, workouts_component_1, dashboard_component_1, login_component_1, exercise_catalog_1, authenticated_router_outlet_1, workout_routine_1, Utils;
     var AppComponent;
     return {
         setters:[
@@ -41,6 +41,9 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './aut
             function (authenticated_router_outlet_1_1) {
                 authenticated_router_outlet_1 = authenticated_router_outlet_1_1;
             },
+            function (workout_routine_1_1) {
+                workout_routine_1 = workout_routine_1_1;
+            },
             function (Utils_1) {
                 Utils = Utils_1;
             }],
@@ -56,8 +59,19 @@ System.register(['angular2/core', 'angular2/router', './workout.service', './aut
                     this._authService.logout()
                         .then(function () { return _this._router.navigate(['Login']); });
                 };
-                AppComponent.prototype.disableLogout = function () {
-                    return Utils.isLoggedIn();
+                AppComponent.prototype.isLogoutDisabled = function () {
+                    return !Utils.isLoggedIn();
+                };
+                AppComponent.prototype.getCurrentUser = function () {
+                    if (!Utils.isLoggedIn) {
+                        return "";
+                    }
+                    var u = sessionStorage.getItem(Utils.Constants.USER);
+                    if (u === null || u === undefined) {
+                        return "";
+                    }
+                    var user = workout_routine_1.User.deserialize(u);
+                    return user.toFullName();
                 };
                 AppComponent = __decorate([
                     core_1.Component({

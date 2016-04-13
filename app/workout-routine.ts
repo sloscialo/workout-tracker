@@ -16,12 +16,39 @@ export enum Difficulty {
     TooLight
 }
 
-export interface User {
+export interface IUser {
   id: number;
   firstName: string;
   lastName: string;
   userId: string;  
   passwordHash: string;
+  
+  toFullName(): string;
+}
+
+export class User implements IUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  userId: string;  
+  passwordHash: string;
+  
+  toFullName() : string {
+    return this.firstName + " " + this.lastName;
+  }
+  
+  static deserialize(value: string) {
+    var o = JSON.parse(value);
+    
+    var u = new User();
+    u.firstName = o.firstName;
+    u.id = o.id;
+    u.lastName = o.lastName;
+    u.passwordHash = o.passwordHash;
+    u.userId = o.userId;
+    
+    return u;
+  }
 }
 
 export interface Workout {
@@ -46,7 +73,7 @@ export interface IExercise {
   getTotalWeight(): number;  
 }
 
-export class Exercise implements IExercise{
+export class Exercise implements IExercise {
   id: number;
   exerciseInfoId: number;
   sets: Set[];

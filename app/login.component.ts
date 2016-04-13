@@ -2,6 +2,7 @@ import { Component, OnInit } from 'angular2/core';
 import { Router } from 'angular2/router';
 import { AuthenticationService } from './authentication.service';
 import { User } from "./workout-routine";
+import { Constants } from './utilities';
 
 @Component({
     selector: "login",
@@ -46,11 +47,15 @@ import { User } from "./workout-routine";
       this.setError(null);
       
       this._authService.login(this.userName, this.userPassword)
-                       .then(u => {
+                       .then(user => {
+                         this._authService.setToken(user);
+                         sessionStorage.setItem(Constants.USER, JSON.stringify(user))
+                         
                          this._router.navigate(['Dashboard'])
                        })
                        .catch(e =>
                        {
+                         this._authService.removeToken();
                          this.setError("There was an error: " + e);
                        });
     }

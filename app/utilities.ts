@@ -1,6 +1,7 @@
 export class Constants
 {
   static TOKEN: string = "authToken";
+  static USER: string = "user";
 }
 
 export function isLoggedIn(): boolean {

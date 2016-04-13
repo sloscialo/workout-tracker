@@ -6,8 +6,10 @@
     <a class="btn btn-primary-outline" [routerLink]="['Workouts']">Workouts</a>
   </div>
   <div class="col-sm-3">
-    <span class="pull-sm-right">{{userName}}</span>
-    <button class="btn btn-danger-outline pull-sm-right" (click)="onLogout()" [disabled]="disableLogout()">Logout</button>
+    <span class="pull-sm-right">
+      <span *ngIf="!isLogoutDisabled()">{{getCurrentUser()}}</span>
+      <button class="btn btn-danger-outline" (click)="onLogout()" [disabled]="isLogoutDisabled()">Logout</button>
+    </span>
   </div>
 </nav>
 <hr/>

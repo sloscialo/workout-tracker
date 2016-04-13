@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/rx';
 @Injectable()
 export class AuthenticationService
 {
-  user: Observable<User>;
+  user: User;
   
   login(userName: string, password: string): Promise<User>
   {
@@ -19,10 +19,6 @@ export class AuthenticationService
       return Promise.reject<User>("User not found, or password incorrect.");
     }
     
-    var token = this.createToken(user);
-    this.user.se
-    this.setToken(token);
-    
     return Promise.resolve(user);
   }
       
@@ -30,13 +26,28 @@ export class AuthenticationService
   {
     try
     {
-      localStorage.removeItem(Constants.TOKEN);
+      this.removeToken();
       return Promise.resolve(true);
     }
     catch(error)
     {
       return Promise.reject<boolean>("Could not log out: " + error.message);
     }
+  }
+  
+  getToken()
+  {
+    return localStorage.getItem(Constants.TOKEN)
+  }
+  
+  setToken(value: any)
+  {
+    localStorage.setItem(Constants.TOKEN, value);
+  }
+  
+  removeToken()
+  {
+    localStorage.removeItem(Constants.TOKEN);
   }
   
   private createToken(user: User): string
@@ -49,15 +60,5 @@ export class AuthenticationService
     hash = (hash * 23) ^ createHashCode(user.passwordHash);
     
     return hash.toString(16);
-  }
-  
-  private getToken()
-  {
-    return localStorage.getItem(Constants.TOKEN)
-  }
-  
-  private setToken(value: any)
-  {
-    localStorage.setItem(Constants.TOKEN, value);
   }
 }
